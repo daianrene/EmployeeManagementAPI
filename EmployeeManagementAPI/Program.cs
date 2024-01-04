@@ -1,6 +1,8 @@
 using EmployeeManagementAPI.Data;
 using EmployeeManagementAPI.Data.Repositories;
+using EmployeeManagementAPI.Data.Repositories.IRepositories;
 using EmployeeManagementAPI.Helpers;
+using EmployeeManagementAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -49,6 +51,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Dependency Injections
 builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
 
+builder.Services.AddScoped<IGenericRepository<GeneralDepartment>, GeneralDepartmentRepository>();
+builder.Services.AddScoped<IGenericRepository<Department>, DepartmentRepository>();
+
 // Jwt Map
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 var jwtConfig = builder.Configuration.GetSection(nameof(JwtConfig)).Get<JwtConfig>();
@@ -66,12 +71,10 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-
-
 // Cors
 builder.Services.AddCors(options =>
-options.AddPolicy("DefaultCors",
-builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
+    options.AddPolicy("DefaultCors", builder =>
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
 var app = builder.Build();
 
@@ -84,7 +87,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseCors("DefaultCors");
+//app.UseCors("DefaultCors");
 
 app.UseAuthentication();
 app.UseAuthorization();

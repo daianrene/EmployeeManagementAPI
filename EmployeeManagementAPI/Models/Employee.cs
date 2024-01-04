@@ -1,21 +1,24 @@
-﻿namespace EmployeeManagementAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace EmployeeManagementAPI.Models
 {
     public class Employee : BaseModel
     {
-        public string? CivilId { get; set; }
-        public string? FileNumber { get; set; }
-        public string? FullName { get; set; }
-        public string? JobName { get; set; }
-        public string? Address { get; set; }
-        public string? TelephoneNumber { get; set; }
+        [Required]
+        public string CivilId { get; set; } = string.Empty;
+        [Required]
+        public string FileNumber { get; set; } = string.Empty;
+        [Required]
+        public string FullName { get; set; } = string.Empty;
+        [Required]
+        public string JobName { get; set; } = string.Empty;
+        [Required]
+        public string Address { get; set; } = string.Empty;
+        [Required]
+        [Phone]
+        public string TelephoneNumber { get; set; } = string.Empty;
         public string? PhotoUrl { get; set; }
         public string? Other { get; set; }
-
-        //Relations M-O
-        public int GeneralDeparmentId { get; set; }
-        public GeneralDepartment? GeneralDeparment { get; set; }
-        public int DepartmentId { get; set; }
-        public Department? Department { get; set; }
         public int BranchId { get; set; }
         public Branch? Branch { get; set; }
         public int TownId { get; set; }

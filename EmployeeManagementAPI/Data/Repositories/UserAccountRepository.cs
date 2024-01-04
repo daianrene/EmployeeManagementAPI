@@ -1,4 +1,5 @@
-﻿using EmployeeManagementAPI.DTOs;
+﻿using EmployeeManagementAPI.Data.Repositories.IRepositories;
+using EmployeeManagementAPI.DTOs;
 using EmployeeManagementAPI.Helpers;
 using EmployeeManagementAPI.Models;
 using EmployeeManagementAPI.Responses;
@@ -38,7 +39,7 @@ namespace EmployeeManagementAPI.Data.Repositories
             var newUser = new ApplicationUser()
             {
                 Email = user.Email,
-                Name = user.Fullname,
+                Name = user.Fullname!,
                 Password = BCrypt.Net.BCrypt.HashPassword(user.Password)
             };
 
