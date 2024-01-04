@@ -1,5 +1,6 @@
 ﻿using EmployeeManagementAPI.Data.Repositories;
 using EmployeeManagementAPI.DTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagementAPI.Controllers
@@ -13,6 +14,27 @@ namespace EmployeeManagementAPI.Controllers
         public AuthenticationController(IUserAccount userAccountRepository)
         {
             _userAccountRepository = userAccountRepository;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult<List<String>> Get()
+        {
+            return Ok(new List<string>() { "hola", "como", "estas" });
+        }
+
+        [HttpGet("Admin")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult<List<String>> GetAdmin()
+        {
+            return Ok(new List<string>() { "hola", "como", "admin" });
+        }
+
+        [HttpGet("User")]
+        [Authorize(Roles = "User")]
+        public ActionResult<List<String>> GetUser()
+        {
+            return Ok(new List<string>() { "hola", "como", "user" });
         }
 
         [HttpPost("Register")]
