@@ -1,7 +1,7 @@
 ﻿using EmployeeManagementAPI.DTOs;
 using EmployeeManagementAPI.Responses;
 
-namespace EmployeeManagementAPI.Data.Repositories.IRepositories
+namespace EmployeeManagementAPI.Repositories.IRepositories
 {
     public interface IUserAccount
     {

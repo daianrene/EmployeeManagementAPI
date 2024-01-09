@@ -1,5 +1,5 @@
-﻿using EmployeeManagementAPI.Data.Repositories.IRepositories;
-using EmployeeManagementAPI.Models;
+﻿using EmployeeManagementAPI.Models;
+using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagementAPI.Controllers

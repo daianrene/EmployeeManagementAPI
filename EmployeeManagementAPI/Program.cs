@@ -1,8 +1,8 @@
 using EmployeeManagementAPI.Data;
-using EmployeeManagementAPI.Data.Repositories;
-using EmployeeManagementAPI.Data.Repositories.IRepositories;
 using EmployeeManagementAPI.Helpers;
 using EmployeeManagementAPI.Models;
+using EmployeeManagementAPI.Repositories;
+using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;

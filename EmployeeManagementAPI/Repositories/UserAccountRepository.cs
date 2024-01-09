@@ -1,7 +1,8 @@
-﻿using EmployeeManagementAPI.Data.Repositories.IRepositories;
+﻿using EmployeeManagementAPI.Data;
 using EmployeeManagementAPI.DTOs;
 using EmployeeManagementAPI.Helpers;
 using EmployeeManagementAPI.Models;
+using EmployeeManagementAPI.Repositories.IRepositories;
 using EmployeeManagementAPI.Responses;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -12,7 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Constants = EmployeeManagementAPI.Helpers.Constants;
 
-namespace EmployeeManagementAPI.Data.Repositories
+namespace EmployeeManagementAPI.Repositories
 {
     public class UserAccountRepository : IUserAccount
     {

@@ -1,4 +1,4 @@
-﻿namespace EmployeeManagementAPI.Data.Repositories.IRepositories
+﻿namespace EmployeeManagementAPI.Repositories.IRepositories
 {
     public interface IGenericRepository<T>
     {

@@ -1,5 +1,5 @@
-﻿using EmployeeManagementAPI.Data.Repositories.IRepositories;
-using EmployeeManagementAPI.DTOs;
+﻿using EmployeeManagementAPI.DTOs;
+using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

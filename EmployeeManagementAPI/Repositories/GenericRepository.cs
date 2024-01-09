@@ -1,7 +1,8 @@
-﻿using EmployeeManagementAPI.Data.Repositories.IRepositories;
+﻿using EmployeeManagementAPI.Data;
+using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace EmployeeManagementAPI.Data.Repositories
+namespace EmployeeManagementAPI.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {

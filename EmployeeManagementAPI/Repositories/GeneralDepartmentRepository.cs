@@ -1,6 +1,7 @@
-﻿using EmployeeManagementAPI.Models;
+﻿using EmployeeManagementAPI.Data;
+using EmployeeManagementAPI.Models;
 
-namespace EmployeeManagementAPI.Data.Repositories
+namespace EmployeeManagementAPI.Repositories
 {
     public class GeneralDepartmentRepository : GenericRepository<GeneralDepartment>
     {
