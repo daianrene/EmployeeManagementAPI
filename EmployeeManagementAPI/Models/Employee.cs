@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace EmployeeManagementAPI.Models
 {
@@ -20,8 +21,10 @@ namespace EmployeeManagementAPI.Models
         public string? PhotoUrl { get; set; }
         public string? Other { get; set; }
         public int BranchId { get; set; }
+        [JsonIgnore]
         public Branch? Branch { get; set; }
         public int TownId { get; set; }
+        [JsonIgnore]
         public Town? Town { get; set; }
     }
 }

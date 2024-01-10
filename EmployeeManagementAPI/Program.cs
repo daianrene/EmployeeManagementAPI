@@ -53,6 +53,15 @@ builder.Services.AddScoped<IUserAccount, UserAccountRepository>();
 
 builder.Services.AddScoped<IGenericRepository<GeneralDepartment>, GeneralDepartmentRepository>();
 builder.Services.AddScoped<IGenericRepository<Department>, DepartmentRepository>();
+builder.Services.AddScoped<IGenericRepository<Branch>, BranchRepository>();
+
+
+builder.Services.AddScoped<IGenericRepository<Country>, CountryRepository>();
+builder.Services.AddScoped<IGenericRepository<City>, CityRepository>();
+builder.Services.AddScoped<IGenericRepository<Town>, TownRepository>();
+
+builder.Services.AddScoped<IGenericRepository<Employee>, EmployeeRepository>();
+
 
 // Jwt Map
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));

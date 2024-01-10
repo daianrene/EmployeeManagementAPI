@@ -60,5 +60,35 @@ namespace EmployeeManagementAPI.Controllers
             var result = await _userAccountRepository.RefreshTokenAsync(token);
             return Ok(result);
         }
+
+        [HttpGet("Users")]
+        public async Task<IActionResult> GetUserAsync()
+        {
+            var users = await _userAccountRepository.GetUsers();
+            if (users == null) return NotFound();
+            return Ok(users);
+        }
+
+        [HttpPut("UpdateUser")]
+        public async Task<IActionResult> UpdateUser(ManageUser manageUser)
+        {
+            var result = await _userAccountRepository.UpdateUser(manageUser);
+            return Ok(result);
+        }
+
+        [HttpGet("Roles")]
+        public async Task<IActionResult> GetRoles()
+        {
+            var roles = await _userAccountRepository.GetRoles();
+            if (roles == null) return NotFound();
+            return Ok(roles);
+        }
+
+        [HttpGet("DeleteUser/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var result = await _userAccountRepository.DeleteUser(id);
+            return Ok(result);
+        }
     }
 }

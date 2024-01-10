@@ -1,11 +1,12 @@
-﻿using EmployeeManagementAPI.Repositories.IRepositories;
+﻿using EmployeeManagementAPI.Models;
+using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericController<T> : ControllerBase where T : class
+    public class GenericController<T> : ControllerBase where T : BaseModel
     {
         private readonly IGenericRepository<T> _genericRepository;
 
@@ -53,11 +54,11 @@ namespace EmployeeManagementAPI.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task<IActionResult> Update(T entity)
+        public async Task<IActionResult> Update(int id, T entity)
         {
-            if (entity == null)
+            if (entity == null || entity.Id != id)
                 return BadRequest();
-            await _genericRepository.Update(entity);
+            await _genericRepository.Update(id, entity);
             return Ok();
         }
     }

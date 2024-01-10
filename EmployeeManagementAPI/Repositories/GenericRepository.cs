@@ -1,32 +1,33 @@
 ﻿using EmployeeManagementAPI.Data;
+using EmployeeManagementAPI.Models;
 using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementAPI.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel
     {
         private readonly DbContext _appDbContext;
         private readonly DbSet<T> _dbSet;
         public GenericRepository(AppDbContext appDbContext)
         {
-            _appDbContext = appDbContext;
+            _appDbContext = appDbContext ?? throw new ArgumentNullException(nameof(appDbContext));
             _dbSet = _appDbContext.Set<T>();
         }
 
 
-        public async Task<List<T>> GetAll() => await _dbSet.ToListAsync();
+        public async Task<IEnumerable<T>> GetAll() => await _dbSet.ToListAsync();
 
-        public async Task<T> GetById(int id) => await _dbSet.FindAsync(id);
+        public async Task<T?> GetById(int id) => await _dbSet.FindAsync(id);
 
         public async Task Insert(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _appDbContext.SaveChangesAsync();
         }
-        public async Task Update(T entity)
+        public async Task Update(int id, T entity)
         {
-            _dbSet.Update(entity);
+            _appDbContext.Set<T>().Update(entity);
             await _appDbContext.SaveChangesAsync();
         }
 
