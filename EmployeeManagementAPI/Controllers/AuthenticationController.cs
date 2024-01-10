@@ -16,27 +16,6 @@ namespace EmployeeManagementAPI.Controllers
             _userAccountRepository = userAccountRepository;
         }
 
-        [HttpGet]
-        [Authorize]
-        public ActionResult<List<String>> Get()
-        {
-            return Ok(new List<string>() { "hola", "como", "estas" });
-        }
-
-        [HttpGet("Admin")]
-        [Authorize(Roles = "Admin")]
-        public ActionResult<List<String>> GetAdmin()
-        {
-            return Ok(new List<string>() { "hola", "como", "admin" });
-        }
-
-        [HttpGet("User")]
-        [Authorize(Roles = "User")]
-        public ActionResult<List<String>> GetUser()
-        {
-            return Ok(new List<string>() { "hola", "como", "user" });
-        }
-
         [HttpPost("Register")]
         public async Task<IActionResult> CreateAsync(Register newUser)
         {
@@ -70,6 +49,7 @@ namespace EmployeeManagementAPI.Controllers
         }
 
         [HttpPut("UpdateUser")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateUser(ManageUser manageUser)
         {
             var result = await _userAccountRepository.UpdateUser(manageUser);
@@ -85,6 +65,7 @@ namespace EmployeeManagementAPI.Controllers
         }
 
         [HttpGet("DeleteUser/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUser(int id)
         {
             var result = await _userAccountRepository.DeleteUser(id);

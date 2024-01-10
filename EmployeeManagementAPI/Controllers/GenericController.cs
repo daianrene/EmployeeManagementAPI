@@ -1,11 +1,13 @@
 ﻿using EmployeeManagementAPI.Models;
 using EmployeeManagementAPI.Repositories.IRepositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EmployeeManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class GenericController<T> : ControllerBase where T : class
     {
         private readonly IGenericRepository<T> _genericRepository;
@@ -17,7 +19,10 @@ namespace EmployeeManagementAPI.Controllers
 
         [HttpGet("All")]
         public async Task<IActionResult> GetAll() => Ok(await _genericRepository.GetAll());
+
+
         [HttpDelete("Delete/{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0)
@@ -45,6 +50,7 @@ namespace EmployeeManagementAPI.Controllers
         }
 
         [HttpPost("Add")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(T entity)
         {
             if (entity == null)
@@ -54,6 +60,7 @@ namespace EmployeeManagementAPI.Controllers
         }
 
         [HttpPut("Update")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Update(int id, T entity)
         {
             if (entity == null)
