@@ -28,12 +28,12 @@ namespace EmployeeManagementAPI.Data
         public DbSet<RefreshTokenInfo> RefreshTokenInfos { get; set; }
 
         // Licences
-        DbSet<Vacation> Vacations { get; set; }
-        DbSet<VacationType> VacationTypes { get; set; }
-        DbSet<Overtime> Overtimes { get; set; }
-        DbSet<OvertimeType> OvertimeTypes { get; set; }
-        DbSet<Sanction> Sanctions { get; set; }
-        DbSet<SanctionType> SanctionTypes { get; set; }
-        DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Vacation> Vacations { get; set; }
+        public DbSet<VacationType> VacationTypes { get; set; }
+        public DbSet<Overtime> Overtimes { get; set; }
+        public DbSet<OvertimeType> OvertimeTypes { get; set; }
+        public DbSet<Sanction> Sanctions { get; set; }
+        public DbSet<SanctionType> SanctionTypes { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
     }
 }

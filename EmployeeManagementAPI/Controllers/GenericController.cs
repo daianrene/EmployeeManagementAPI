@@ -6,7 +6,7 @@ namespace EmployeeManagementAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GenericController<T> : ControllerBase where T : BaseModel
+    public class GenericController<T> : ControllerBase where T : class
     {
         private readonly IGenericRepository<T> _genericRepository;
 
@@ -56,8 +56,12 @@ namespace EmployeeManagementAPI.Controllers
         [HttpPut("Update")]
         public async Task<IActionResult> Update(int id, T entity)
         {
-            if (entity == null || entity.Id != id)
+            if (entity == null)
                 return BadRequest();
+
+            if (entity is BaseModel entityBase && entityBase.Id != id)
+                return BadRequest();
+
             await _genericRepository.Update(id, entity);
             return Ok();
         }

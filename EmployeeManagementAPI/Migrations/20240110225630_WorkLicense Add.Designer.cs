@@ -4,6 +4,7 @@ using EmployeeManagementAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EmployeeManagementAPI.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240110225630_WorkLicense Add")]
+    partial class WorkLicenseAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -313,7 +316,7 @@ namespace EmployeeManagementAPI.Data.Migrations
                     b.Property<DateTime>("PunishmentDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("SanctionTypeId")
+                    b.Property<int?>("SanctionTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -509,9 +512,7 @@ namespace EmployeeManagementAPI.Data.Migrations
                 {
                     b.HasOne("EmployeeManagementAPI.Models.SanctionType", "SanctionType")
                         .WithMany("Sanctions")
-                        .HasForeignKey("SanctionTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SanctionTypeId");
 
                     b.Navigation("SanctionType");
                 });

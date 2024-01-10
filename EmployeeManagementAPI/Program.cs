@@ -62,6 +62,17 @@ builder.Services.AddScoped<IGenericRepository<Town>, TownRepository>();
 
 builder.Services.AddScoped<IGenericRepository<Employee>, EmployeeRepository>();
 
+builder.Services.AddScoped<IGenericRepository<Overtime>, OvertimeRepository>();
+builder.Services.AddScoped<IGenericRepository<OvertimeType>, OvertimeTypeRepository>();
+
+builder.Services.AddScoped<IGenericRepository<Vacation>, VacationRepository>();
+builder.Services.AddScoped<IGenericRepository<VacationType>, VacationTypeRepository>();
+
+builder.Services.AddScoped<IGenericRepository<Sanction>, SanctionRepository>();
+builder.Services.AddScoped<IGenericRepository<SanctionType>, SanctionTypeRepository>();
+
+builder.Services.AddScoped<IGenericRepository<Doctor>, DoctorRepository>();
+
 
 // Jwt Map
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));

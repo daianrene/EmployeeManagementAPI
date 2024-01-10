@@ -1,11 +1,10 @@
 ﻿using EmployeeManagementAPI.Data;
-using EmployeeManagementAPI.Models;
 using EmployeeManagementAPI.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementAPI.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : BaseModel
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         private readonly DbContext _appDbContext;
         private readonly DbSet<T> _dbSet;
@@ -27,7 +26,7 @@ namespace EmployeeManagementAPI.Repositories
         }
         public async Task Update(int id, T entity)
         {
-            _appDbContext.Set<T>().Update(entity);
+            _dbSet.Update(entity);
             await _appDbContext.SaveChangesAsync();
         }
 
